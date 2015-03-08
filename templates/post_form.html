@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+{%block title%} Upload Something {%endblock%}
+{%block body %}
+{% load staticfiles %}
+	<div class='container-fluid' style="padding-top:1em;">
+			{% load bootstrap_tags %}
+			<div class = 'col-xs-9 col-sm-6 col-md-6 col-lg-6' style="padding-top:2em;">
+			<legend>Submit your secrets or confessions, totally anonymous:</legend>	
+		  		<form class="form-vertical" action='' method = "POST" > {%csrf_token %}
+		  			{{form.media}}
+					{{form|as_bootstrap}}
+		      		<input type = "submit"  class="btn btn-info " value= "Write Post">
+				</form>
+			</div>
+	</div>
+{%endblock%}

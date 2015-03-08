@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title%} {% endblock title%}</title>
+    <!-- Bootstrap core CSS -->
+    {% load staticfiles %}
+       <link rel="stylesheet" href="{% static 'css/confess.css' %}">
+       <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+       <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- Custom Styling CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!-- Font-awesome CSS -->
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+
+
+  </head>
+
+  <body>
+ <!--Begins  NAVBAR -->
+<header class="navbar">
+  <div class="container-fluid expanded-panel">
+    <div class="row">
+      <div id="logo" class="col-xs-12 col-sm-2">
+        <a href="{% url 'list'%}">Secretly</a>
+      </div>
+      <div id="top-panel" class="col-xs-12 col-sm-10">
+        <div class="row">
+          <div class="col-xs-8 col-sm-4">
+            <a href="#" class="show-sidebar">
+              <i class="glyphicon glyphicon-align-justify"></i>
+            </a>
+            <div id="sections" class = "col-xs-8 col-sm-4 side-text">
+              <!--<input type="text" placeholder="search"/>-->
+              <a href="{%url 'popular'%}">Popular</a>
+            </div>
+              <!--<input type="text" placeholder="search"/>-->
+              <a href="{% url 'new'%}">New</a>            
+          </div>
+          <div class="col-xs-4 col-sm-8 top-panel-right">
+            <ul class="nav navbar-nav pull-right panel-menu">
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!--ENDS NAVBAR -->
+<!--End Header-->
+<!--Start Container-->
+<div id="main" class="container-fluid">
+  <div class="row">
+    <div id="sidebar-left" class="col-xs-2 col-sm-2">
+      <ul class="nav main-menu">
+        <li>
+          <a href="{% url 'list'%}" class="active">
+            <i class="glyphicon glyphicon-user"></i>
+            <span class="hidden-xs">Confessions</span>
+          </a>
+        </li>
+        <li class="dropdown">
+          <a href="{% url 'form'%}" class="dropdown-toggle">
+            <i class="glyphicon glyphicon-pencil"></i>
+            <span class="hidden-xs">Confess something</span>
+          </a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle">
+            <i class="glyphicon glyphicon-info-sign"></i>
+             <span class="hidden-xs">About</span>
+          </a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle">
+            <i class="glyphicon glyphicon-list"></i>
+             <span class="hidden-xs">Categories</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="ajax-link" href="">Students</a></li>
+            <li><a class="ajax-link" href="">College</a></li>
+            <li><a class="ajax-link" href="">Sex</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  {% block content %}
+  {% endblock content %}
+  {%block body%}
+  {%endblock%}
+      
+</body>
+
+    </div> <!-- /container -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src = "//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src = "//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
+<script src="/static/js/like_and_modals.js"></script>
+<script src="/static/js/devoops.js"></script>
+<script type="text/javascript"></script>
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    {# Making images responsive #}
+    <script>
+    $(document).ready
+    (function()
+      {
+        $("img").addClass("img-responsive");
+
+      }
+    );
+    </script>
+    {{form.media}} 
+    {% block js %}
+    {% endblock %}
+  </body>

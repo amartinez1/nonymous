@@ -1,0 +1,68 @@
+{%extends 'base.html'%}
+
+
+{% block body %}
+
+
+<div class='container-fluid' style="padding-top:3em;">
+
+<div class = 'row'>
+  <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6" >
+  
+				<div id = 'Post'>
+					<h3><a class='post'href="" data-toggle="modal" data-target="#myModal" data-catid='{{object.id}}'>{{object.title|truncatechars:20}}</a></h3>
+
+
+					<div class=' thumbnail spaces' style="border-radius:1em;" >
+         
+					     <h4 class='justified' style='padding-bottom:3em;'>{{object.text}}</h4>
+         
+
+          <div>
+
+            <hr>
+            <button  id = 'button{{object.id}}'data-catid='{{object.id}}' class="btn btn-primary likes" type="button">Like</button>
+            <span id = '{{object.id}}'class ='badge count' >{{object.total_likes}}</span>
+
+            <small class='' style ='padding-left:0em;'><i class ='glyphicon glyphicon-time'></i>&nbsp{{object.posted|timesince}}&nbsp ago</small>
+          </div>
+					</div>
+
+
+
+					<!--<div id="like_count"></div>-->
+					<!-- Modal -->
+
+				</div>
+        <!-- Facebook -->
+<a href="http://www.facebook.com/sharer.php?u={%url 'detail' object.slug %}" target="_blank"><img src="http://www.simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" /></a>
+          <hr>
+      
+				
+
+		</ul>
+    </div>
+  </div>	
+	
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+                
+      </div>
+      <div class="modal-footer">
+        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal-end -->
+
+
+{% endblock %}

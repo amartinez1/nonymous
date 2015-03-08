@@ -1,0 +1,74 @@
+
+.navbarcss{
+
+background: #ff1e52; /* Old browsers */
+background: -moz-linear-gradient(left, #ff1e52 0%, #f27e26 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ff1e52), color-stop(100%,#f27e26)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left, #ff1e52 0%,#f27e26 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left, #ff1e52 0%,#f27e26 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left, #ff1e52 0%,#f27e26 100%); /* IE10+ */
+background: linear-gradient(to right, #ff1e52 0%,#f27e26 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff1e52', endColorstr='#f27e26',GradientType=1 ); /* IE6-9 */
+}
+.navbar-custom .div li a {
+	-o-transition: background .3s ease-in-out;
+
+    -webkit-transition: background .3s ease-in-out;
+    -moz-transition: background .3s ease-in-out;
+    transition: background .3s ease-in-out;
+}
+
+
+a {
+    color: #28c3ab;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+
+    -moz-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.errorlist
+{
+
+color:red;
+}
+
+.text{
+    color:black;
+}
+.side-text{
+    color:white;
+    text-decoration: none;
+
+}
+.justified
+{
+    text-indent: 1em;
+    text-align:justify;
+    letter-spacing:0.1em;
+}
+#share-buttons img 
+{
+    width: 35px;
+    padding: 5px;
+    border: 0;
+    box-shadow: 0;
+    display: inline;
+}
+.likes .fa-heart:hover{
+    color:#61FFC9;
+}
+
+.likes  .fa-heart-o:hover{
+    color:#61FFC9;
+
+}
+
+.likes{
+    transition: background .1s ease-in;
+}
+
+.fa-heart{
+    transition: color .1s ease-in;
+
+}

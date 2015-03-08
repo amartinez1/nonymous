@@ -1,0 +1,28 @@
+{% extends "base.html"%}
+
+{% block js %}
+       {{ block.super }}
+        <script src ='/static/js/jquery-2.1.0.js'></script>
+           <script src="/static/js/endless-pagination.js"></script>
+
+
+     <script>
+         
+              $.endlessPaginate({
+                  
+                  paginateOnScrollChunkSize:3
+              });
+         
+          </script>
+
+
+{% endblock %}
+
+ 
+{% block content %}
+
+
+     <div class="endless_page_template col-xs-10 col-sm-6 col-md-6 col-lg-6"  >
+        {% include page_template %}
+       </div>
+{% endblock %}

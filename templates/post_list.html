@@ -1,0 +1,84 @@
+{%extends 'base.html'%}
+{% block body %}
+{% load humanize %} 
+<div class='container-fluid' style="padding-top:3em;" >
+  <div class = 'row'>
+    <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6" >
+  		<ul>
+  			{% for confession in object_list %}
+  				<div id = 'Post'>
+  					<h3><a class='post'href="" data-toggle="modal" data-target="#myModal" data-catid='{{confession.id}}'>{{confession.title|truncatechars:20}}</a></h3>
+  					<div class=' thumbnail spaces' style="border-radius:1em;" >
+    					<h4 class='justified' style='padding-bottom:3em;'><a href="{%url 'detail' confession.slug %}"> "{{confession.text|truncatechars:500}}"</a></h4>    
+              <div>
+                <hr>
+                {% for like in likes%}
+                  {%if confession.pk == like.post.pk  and like.liked == True  and like.user_token == user_token %}
+                    <button  id = 'button{{confession.id}}'data-catid='{{confession.id}}' class="btn btn-primary likes" data-type = "Unlike" type="button"><i class="fa fa-heart"></i></button>
+                  {% elif confession.pk == like.post.pk and like.liked == False and like.user_token == user_token %}
+                    <button  id = 'button{{confession.id}}'data-catid='{{confession.id}}' class="btn btn-primary likes" data-type = "Like" type="button"><i class="fa fa-heart-o"></i></button>
+                  {% endif %}
+
+                {% endfor %}
+                
+                {% for key, value in post2tokens.items %}
+                  {% if key == confession and  value == False%}
+                    <button  id = 'button{{confession.id}}'data-catid='{{confession.id}}' class="btn btn-primary likes" type="button"><i class="fa fa-heart-o"></i></button>
+                  {%endif%}
+                {%endfor%}
+                <span id = '{{confession.id}}' class ='badge count' >{{confession.total_likes|intcomma}}</span>
+                <small style ='padding-left:0em;'><i class ='glyphicon glyphicon-time'></i>&nbsp{{confession.posted|timesince}}&nbsp ago</small>
+              </div>
+  					</div>
+  				</div>
+          <div id="share-buttons">
+   
+              <!-- Facebook -->
+              <a href="http://www.facebook.com/sharer.php?u={%url 'detail' confession.slug %}" target="_blank"><img src="http://www.simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" /></a>
+               
+              <!-- Twitter -->
+              <a href="http://twitter.com/share?url={%url 'detail' confession.slug %}" target="_blank"><img src="http://www.simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" /></a>
+               
+              <!-- Google+ -->
+              <a href="https://plus.google.com/share?url=http://www.simplesharebuttons.com" target="_blank"><img src="http://www.simplesharebuttons.com/images/somacro/google.png" alt="Google" /></a>
+               
+              <!-- Digg -->
+              <a href="http://www.digg.com/submit?url=http://www.simplesharebuttons.com" target="_blank"><img src="http://www.simplesharebuttons.com/images/somacro/diggit.png" alt="Digg" /></a>
+               
+              <!-- Reddit -->
+              <a href="http://reddit.com/submit?url=http://www.simplesharebuttons.com&title=Simple Share Buttons" target="_blank"><img src="http://www.simplesharebuttons.com/images/somacro/reddit.png" alt="Reddit" /></a>
+               
+              <!-- LinkedIn -->
+              <a href="http://www.linkedin.com/shareArticle?mini=true&url=http://www.simplesharebuttons.com" target="_blank"><img src="http://www.simplesharebuttons.com/images/somacro/linkedin.png" alt="LinkedIn" /></a>
+               
+              <!-- Pinterest -->
+              <a href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());"><img src="http://www.simplesharebuttons.com/images/somacro/pinterest.png" alt="Pinterest" /></a>
+          </div>
+          <hr>
+  			{%empty%}
+  				<h2>No confession till' now, come back later</h2>
+  			{% endfor %}
+  		</ul>
+      </div>
+    </div>	
+  </div>  <!-- row -->
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel"></h4>
+        </div>
+        <div class="modal-body">       
+        </div>
+        <div class="modal-footer">
+          <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Modal-end -->
+</div> <!-- container -->
+{% endblock %}
+

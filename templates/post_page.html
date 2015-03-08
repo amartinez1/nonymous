@@ -1,0 +1,100 @@
+{% block content%}
+<div class = 'row'>
+    
+  {% load endless %}
+
+  {% paginate 8 objects %}
+  
+		<ul>
+			{% for confession in objects %}
+      
+				<div id = 'Post'>
+					<h3><a class='post'href="" data-toggle="modal" data-target="#myModal" data-catid='{{confession.id}}'>{{confession.title|truncatechars:20}}</a></h3>
+          
+					<div class=' thumbnail spaces' style="border-radius:1em;" >
+         
+					     <h4 class='justified' style='padding-bottom:3em;'>{{confession.text|truncatechars:500}}</h4>
+         
+            
+					{% if confession.image %}
+
+						<!--<img src="{{MEDIA_URL}}{{confession.image}}" alt="{{confession.text}}" height='200' width='200'> -->
+					{% endif %}
+<!-- I got these buttons from simplesharebuttons.com -->
+          <div>
+            <hr>
+            <button  id = 'button{{confession.id}}'data-catid='{{confession.id}}' class="btn btn-primary likes" type="button">Like</button>
+            <span id = '{{confession.id}}'class ='badge count' >{{confession.total_likes}}</span>
+
+            <small class='' style ='padding-left:0em;'><i class ='glyphicon glyphicon-time'></i>&nbsp{{confession.posted|timesince}}&nbsp ago</small>
+          </div>
+					</div>
+
+
+
+					<!--<div id="like_count"></div>-->
+					<!-- Modal -->
+
+				</div>
+        <div id="share-buttons">
+ 
+            <!-- Facebook -->
+            <a href="http://www.facebook.com/sharer.php?u={%url 'detail' confession.slug %}" target="_blank"><img src="http://www.simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" /></a>
+             
+            <!-- Twitter -->
+            <a href="http://twitter.com/share?url={%url 'detail' confession.slug %}" target="_blank"><img src="http://www.simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" /></a>
+             
+            <!-- Google+ -->
+            <a href="https://plus.google.com/share?url=http://www.simplesharebuttons.com" target="_blank"><img src="http://www.simplesharebuttons.com/images/somacro/google.png" alt="Google" /></a>
+             
+            <!-- Digg -->
+            <a href="http://www.digg.com/submit?url=http://www.simplesharebuttons.com" target="_blank"><img src="http://www.simplesharebuttons.com/images/somacro/diggit.png" alt="Digg" /></a>
+             
+            <!-- Reddit -->
+            <a href="http://reddit.com/submit?url=http://www.simplesharebuttons.com&title=Simple Share Buttons" target="_blank"><img src="http://www.simplesharebuttons.com/images/somacro/reddit.png" alt="Reddit" /></a>
+             
+            <!-- LinkedIn -->
+            <a href="http://www.linkedin.com/shareArticle?mini=true&url=http://www.simplesharebuttons.com" target="_blank"><img src="http://www.simplesharebuttons.com/images/somacro/linkedin.png" alt="LinkedIn" /></a>
+             
+            <!-- Pinterest -->
+            <a href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());"><img src="http://www.simplesharebuttons.com/images/somacro/pinterest.png" alt="Pinterest" /></a>
+             </div>
+          <hr>
+      
+				
+			{%empty%}
+				<h2>No confession till' now, come back later</h2>
+
+			{% endfor %}
+      {% show_more %}
+      {% get_pages %}
+
+{# the previous page (or nothing if you are on first page) #}
+<h4>{{ pages.previous  }}</h4>
+      
+		</ul>
+    </div>
+  </div>	
+	
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+                
+      </div>
+      <div class="modal-footer">
+        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal-end -->
+
+
+{% endblock %}
